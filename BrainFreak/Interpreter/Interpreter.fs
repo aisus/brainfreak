@@ -2,14 +2,15 @@
 
 open BrainFreak.Core
 
-//let executeOperator op state: State =
-//    //        match op with
-////            | Operator.Right -> state.pointer++
-////            | Operator.Left -> state.pointer--
-//    state
-//
-//let execute (input: list<Operator>, state: State): State =
-//    input
-//    |> Seq.map (fun x -> executeOperator x state)
-//
-//    state
+let executeOperator op state =
+    match op with
+    | Operator.Right -> state.pointer <- state.pointer + 1
+    | Operator.Left -> state.pointer <- state.pointer - 1
+    | Operator.Inc -> state.buffer.[state.pointer] <- state.buffer.[state.pointer] + 1
+    | Operator.Dec -> state.buffer.[state.pointer] <- state.buffer.[state.pointer] - 1
+    | Operator.Write -> printf "%u" state.buffer.[state.pointer]
+    | _ -> failwith "todo"
+
+let execute input state =
+    input
+    |> Seq.iter (fun x -> executeOperator x state)

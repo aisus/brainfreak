@@ -1,4 +1,4 @@
-module BrainFreak.Tests
+module BrainFreak.Tests.ParserTests
 
 open BrainFreak.Core
 open NUnit.Framework
@@ -18,5 +18,9 @@ let ShouldParseOperators () =
           Operator.LoopStart
           Operator.LoopEnd ]
 
-    let parsed = allOperators |> Seq.map (parseCharToOperator) |> List.ofSeq
+    let parsed =
+        allOperators
+        |> Seq.map (parseCharToOperator)
+        |> List.ofSeq
+
     Assert.AreEqual(expected, parsed)

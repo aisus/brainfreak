@@ -10,4 +10,6 @@ type Operator =
     | LoopStart = '['
     | LoopEnd = ']'
 
-type State = { buffer: list<int>; mutable pointer: int }
+type State =
+    { buffer: int array
+      mutable pointer: int }
