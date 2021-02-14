@@ -1,13 +1,10 @@
-﻿// Learn more about F# at http://docs.microsoft.com/dotnet/fsharp
+﻿module BrainFreak.Program
 
-open System
-
-// Define a function to construct a message to print
-let from whom =
-    sprintf "from %s" whom
+open BrainFreak.Parser
 
 [<EntryPoint>]
 let main argv =
-    let message = from "F#" // Call the function
-    printfn "Hello world %s" message
-    0 // return an integer exit code
+    let test = Seq.toList "<>.,[]"
+    let parsed = test |> Seq.map (parseCharToOperator)
+    parsed |> Seq.iter (printf "%A ")
+    0
